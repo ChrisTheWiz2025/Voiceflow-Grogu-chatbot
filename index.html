@@ -4,25 +4,38 @@
   <meta charset="UTF-8">
   <title>Voiceflow AI Assistant</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
-  <h2 style="text-align:center;">Voiceflow AI Assistant</h2>
+  <h2>Voiceflow AI Assistant</h2>
 
-  <!-- Voiceflow Chatbot Script with auto-open -->
+  <!-- Voiceflow Chatbot Script with force auto-open -->
   <script type="text/javascript">
     (function(d, t) {
-        var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-        v.onload = function() {
-          window.voiceflow.chat.load({
-            verify: { projectID: '663de1cfbdd534706b09cd45' },
-            url: 'https://general-runtime.voiceflow.com',
-            versionID: 'production',
-            open: true  // 👈 auto-open the chat widget
-          });
-        }
-        v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
-        v.type = "text/javascript";
-        s.parentNode.insertBefore(v, s);
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        window.voiceflow.chat.load({
+          verify: { projectID: '663de1cfbdd534706b09cd45' },
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production'
+        });
+
+        // Force the chat to auto-open after a short delay
+        setTimeout(() => {
+          if (window.voiceflow && window.voiceflow.chat && typeof window.voiceflow.chat.open === 'function') {
+            window.voiceflow.chat.open();
+          }
+        }, 1000); // delay for smoother loading
+      };
+      v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
+      v.type = "text/javascript";
+      s.parentNode.insertBefore(v, s);
     })(document, 'script');
   </script>
 </body>
