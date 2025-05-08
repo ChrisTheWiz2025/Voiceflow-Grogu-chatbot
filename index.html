@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Voiceflow Chatbot</title>
+  <title>Voiceflow AI Assistant</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
   <h2 style="text-align:center;">Voiceflow AI Assistant</h2>
 
-  <!-- Voiceflow Chatbot Script -->
+  <!-- Voiceflow Chatbot Script with auto-open -->
   <script type="text/javascript">
     (function(d, t) {
         var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
@@ -16,7 +16,8 @@
           window.voiceflow.chat.load({
             verify: { projectID: '663de1cfbdd534706b09cd45' },
             url: 'https://general-runtime.voiceflow.com',
-            versionID: 'production'
+            versionID: 'production',
+            open: true  // 👈 auto-open the chat widget
           });
         }
         v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
