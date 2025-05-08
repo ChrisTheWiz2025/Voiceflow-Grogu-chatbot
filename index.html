@@ -15,28 +15,29 @@
 <body>
   <h2>Voiceflow AI Assistant</h2>
 
-  <!-- Voiceflow Chatbot Script with force auto-open -->
+  <!-- Voiceflow Chatbot Script with stronger auto-open -->
   <script type="text/javascript">
-    (function(d, t) {
-      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-      v.onload = function() {
-        window.voiceflow.chat.load({
-          verify: { projectID: '663de1cfbdd534706b09cd45' },
-          url: 'https://general-runtime.voiceflow.com',
-          versionID: 'production'
-        });
-
-        // Force the chat to auto-open after a short delay
-        setTimeout(() => {
-          if (window.voiceflow && window.voiceflow.chat && typeof window.voiceflow.chat.open === 'function') {
-            window.voiceflow.chat.open();
-          }
-        }, 1000); // delay for smoother loading
-      };
+    window.addEventListener("DOMContentLoaded", function () {
+      const v = document.createElement("script");
       v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
       v.type = "text/javascript";
-      s.parentNode.insertBefore(v, s);
-    })(document, 'script');
+      v.onload = function () {
+        window.voiceflow.chat.load({
+          verify: { projectID: "663de1cfbdd534706b09cd45" },
+          url: "https://general-runtime.voiceflow.com",
+          versionID: "production"
+        });
+
+        // Try repeatedly to open the chat until it’s ready
+        const tryOpen = setInterval(() => {
+          if (window.voiceflow?.chat?.open) {
+            window.voiceflow.chat.open();
+            clearInterval(tryOpen);
+          }
+        }, 500);
+      };
+      document.body.appendChild(v);
+    });
   </script>
 </body>
 </html>
